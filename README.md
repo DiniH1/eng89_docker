@@ -35,6 +35,45 @@
 ![](images/msa.webp)
 - Microservice architecture – a variant of the service-oriented architecture structural style – arranges an application as a collection of loosely-coupled services. In a microservices architecture, services are fine-grained and the protocols are lightweight
 
+## Microservices vs Monolith
+![](images/mon.jpeg)
+- The monolithic architecture is considered to be a traditional way of building applications. A monolithic application is built as a single and indivisible unit. Usually, such a solution comprises a client-side user interface, a server side-application, and a database. It is unified and all the functions are managed and served in one place.
+
+![](images/mona.jpeg)
+
+### Copying to nginx
+`docker cp [path to file] [docker container id]:[path to destination]`
+- In this case I copied over an index file into the container to replace the default nginx one. I can now freely make changes to the file and it will be updated and displayed on the localhost.
+
+## Creating a Dockerfile
+- build an image to automate the task to launch a static webserver using nginx with Docker
+- Using nginx webserver with Docker
+- Use the official image nginx
+- lable it wuth your name or email
+- Copy the folder/file from local host to the container
+- declare to use default port 80 for nginx
+
+- building customised docker images
+
+ `FROM` is the keyword to use the image 
+
+`FROM nginx`
+
+- lable it with your email or name - this is optional
+`LABEL MAINTAINER=dhassan@sparta`
+
+- Copy the data as our index.html
+`COPY index.html /usr/share/nginx/html`
+- copy index.html to the nginx default index.html
+- Now let's add the port
+`EXPOSE 80`
+
+`CMD ["nginx", "-g", "daemon off;"]`
+- we get this from the offical image of nginx
+
+## Building the image
+`docker build -t [USERNAME]/[REPO NAME] .`
+
 
 
 
